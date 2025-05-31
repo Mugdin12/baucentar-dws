@@ -5,7 +5,7 @@ import FeaturedProducts from "../components/FeaturedProducts.jsx";
 import Footer from "../components/Footer.jsx"
 export default function Home() {
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col">
+        <div className="min-h-screen bg-gray-50 flex flex-col pt-24">
             <Navbar /> {/* Renderujte vašu Navbar komponentu */}
             <ImageGallery/>
             <FeaturedProducts/>
