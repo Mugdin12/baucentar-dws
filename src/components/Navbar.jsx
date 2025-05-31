@@ -24,7 +24,7 @@ export default function Navbar() {
                     {/* ✨ Dodane klase za hover efekat i padding za bolji vizuelni prikaz */}
                     <a href="#" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-3 py-2 rounded-lg">Početna</a>
                     <a href="#" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-3 py-2 rounded-lg">O nama</a>
-                    <a href="#" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-3 py-2 rounded-lg">Kontaktiraj Nas</a>
+                    <a href="#" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-3 py-2 rounded-lg">Kontakt</a>
                 </div>
 
                 {/* Desno: Autentifikacioni Linkovi (Desktop) */}
@@ -60,7 +60,7 @@ export default function Navbar() {
                         {/* ✨ Dodane klase za hover efekat i padding za bolji vizuelni prikaz */}
                         <a href="#" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-3 rounded-lg">Početna</a>
                         <a href="#" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-3 rounded-lg">O nama</a>
-                        <a href="#" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-3 rounded-lg">Kontaktiraj Nas</a>
+                        <a href="#" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-3 rounded-lg">Kontakt</a>
                         <div className="w-full h-px bg-gray-200 my-2"></div>
                         {/* ✨ Dodane klase za hover efekat i padding za bolji vizuelni prikaz */}
                         <a href="#" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-4 rounded-lg">Prijavi se</a>
