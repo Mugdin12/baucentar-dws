@@ -13,7 +13,7 @@ export default function Footer() {
                     <h3 className="text-lg font-bold mb-4 text-gray-800">Brzi Linkovi</h3>
                     <ul className="space-y-2">
                         <li><a href="#" className="hover:text-blue-600 transition-colors">Početna</a></li>
-                        <li><a href="#" className="hover:text-blue-600 transition-colors">O nama</a></li>
+                        <li><a href="/o-nama" className="hover:text-blue-600 transition-colors">O nama</a></li>
                         <li><a href="/Shop" className="hover:text-blue-600 transition-colors">Proizvodi</a></li>
                         <li><a href="#" className="hover:text-blue-600 transition-colors">Kontakt</a></li>
                     </ul>
