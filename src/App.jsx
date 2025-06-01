@@ -1,16 +1,18 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './Pages/Home.jsx'; // Uvezite Home komponentu
-import About from "./Pages/About.jsx"
-import Shop from "./Pages/Shop.jsx"
+import Home from './Pages/Home';
+import About from './Pages/About';
+import Shop from './Pages/Shop';
+import ProductDetail from './Pages/ProductDetail.jsx'; // Uvezite ProductDetail komponentu
 
 function App() {
     return (
-        <Router> {/* Omotajte cijelu aplikaciju sa Routerom */}
-            <Routes> {/* Definirajte rute unutar Routes komponente */}
-                <Route path="/" element={<Home />} /> {/* Ruta za početnu stranicu */}
+        <Router>
+            <Routes>
+                <Route path="/" element={<Home />} />
                 <Route path="/o-nama" element={<About />} />
                 <Route path="/proizvodi" element={<Shop />} />
+                <Route path="/proizvodi/:productName" element={<ProductDetail />} />
             </Routes>
         </Router>
     );

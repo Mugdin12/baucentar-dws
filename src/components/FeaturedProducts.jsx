@@ -15,7 +15,7 @@ export default function FeaturedProducts() {
                 {/* Dugme "Prikaži sve proizvode" na dnu */}
                 <div className="flex justify-center mt-12">
                     <button
-                        onClick={() => { window.location.href = '/Shop'; }}
+                        onClick={() => { window.location.href = '/proizvodi'; }}
                         className="bg-green-600 text-white font-semibold px-8 py-4 rounded-lg shadow-md hover:bg-green-700 transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 text-lg"
                     >
                         Prikaži sve proizvode
