@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from '../components/Navbar.jsx'; // Uvezite vašu Navbar komponentu
+import Review from '../components/Review.jsx'
 import ImageGallery from "../components/ImageGallery.jsx";
 import FeaturedProducts from "../components/FeaturedProducts.jsx";
 import Footer from "../components/Footer.jsx"
@@ -9,6 +10,7 @@ export default function Home() {
             <Navbar /> {/* Renderujte vašu Navbar komponentu */}
             <ImageGallery/>
             <FeaturedProducts/>
+            <Review/>
             <Footer/>
         </div>
     );

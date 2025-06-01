@@ -1,16 +1,21 @@
 import React from "react";
 import { BadgeCheck, Handshake, Lightbulb } from "lucide-react";
-
+import Navbar from '../components/Navbar.jsx'
+import Review from "../components/Review.jsx"
+import Footer from "../components/Footer.jsx"
+import AboutBgImage from "../slike/About-bg.jpg"
 export default function About() {
     return (
         <div className="font-sans">
+            <Navbar/>
             {/* Hero Sekcija */}
             <div className="relative bg-gradient-to-r from-green-800 to-green-600 text-white py-20 px-6 md:px-16">
-                <div className="absolute inset-0 opacity-30 bg-cover bg-center" style={{ backgroundImage: "url('/construction-bg.jpg')" }}></div>
+                <div className="absolute inset-0 opacity-30 bg-cover bg-center" style={{ backgroundImage: `url(${AboutBgImage})` }}
+                ></div>
                 <div className="relative z-10 max-w-4xl mx-auto">
                     <div className="text-sm mb-2">Početna &gt; <span className="font-semibold">O nama</span></div>
                     <h1 className="text-4xl font-bold mb-2">O BauCenteru</h1>
-                    <p className="text-lg">Zajedno gradimo bolju budućnost od 1985.</p>
+                    <p className="text-lg">Zajedno gradimo bolju budućnost od 2025.</p>
                 </div>
             </div>
 
@@ -63,6 +68,8 @@ export default function About() {
                     </p>
                 </div>
             </div>
+            <Review/>
+            <Footer/>
         </div>
     );
 }
