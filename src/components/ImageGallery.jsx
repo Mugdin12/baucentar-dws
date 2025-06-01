@@ -61,7 +61,7 @@ export default function ImageGallery() {
                     <p className="text-white text-base sm:text-lg mb-4 drop-shadow-lg">Pogledajte naše najnovije električne alate</p>
                     {/* ✨ Dodan onClick handler za dugme "Kupite Sada" da vodi na /Shop */}
                     <button
-                        onClick={() => { window.location.href = '/Shop'; }} // Preusmjerava na /Shop
+                        onClick={() => { window.location.href = '/proizvodi'; }} // Preusmjerava na /Shop
                         className="bg-[#00a63e] hover:bg-green-600 text-white px-5 py-2 rounded-md w-fit shadow-lg transition-colors"
                     >
                         Kupite Sada

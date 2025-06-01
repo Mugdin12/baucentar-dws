@@ -14,7 +14,7 @@ export default function Footer() {
                     <ul className="space-y-2">
                         <li><a href="#" className="hover:text-blue-600 transition-colors">Početna</a></li>
                         <li><a href="/o-nama" className="hover:text-blue-600 transition-colors">O nama</a></li>
-                        <li><a href="/Shop" className="hover:text-blue-600 transition-colors">Proizvodi</a></li>
+                        <li><a href="/proizvodi" className="hover:text-blue-600 transition-colors">Proizvodi</a></li>
                         <li><a href="#" className="hover:text-blue-600 transition-colors">Kontakt</a></li>
                     </ul>
                 </div>

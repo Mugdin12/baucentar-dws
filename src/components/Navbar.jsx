@@ -47,6 +47,7 @@ export default function Navbar() {
                 <div className="hidden md:flex space-x-8 flex-1 justify-center">
                     <a href="#" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-3 py-2 rounded-lg">Početna</a>
                     <a href="/o-nama" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-3 py-2 rounded-lg">O nama</a>
+                    <a href="/proizvodi" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-3 py-2 rounded-lg">Proizvodi</a>
                     <a href="#" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-3 py-2 rounded-lg">Kontakt</a>
                 </div>
 
@@ -80,6 +81,7 @@ export default function Navbar() {
                     <div className="flex flex-col items-center space-y-4">
                         <a href="#" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-3 rounded-lg">Početna</a>
                         <a href="/o-nama" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-3 rounded-lg">O nama</a>
+                        <a href="/proizvodi" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-3 rounded-lg">Proizvodi</a>
                         <a href="#" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-3 rounded-lg">Kontakt</a>
                         <div className="w-full h-px bg-gray-200 my-2"></div>
                         <a href="#" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-4 rounded-lg">Prijavi se</a>
