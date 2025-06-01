@@ -13,12 +13,13 @@ export default function RelatedProductsCarousel({ currentProductId }) {
     const displayProducts = relatedProducts.slice(0, 6);
 
     const [currentSlide, setCurrentSlide] = useState(0);
+
     // Prilagodite broj proizvoda po prikazu za različite veličine ekrana
     const getProductsPerView = () => {
         if (window.innerWidth >= 1024) return 4; // lg
         if (window.innerWidth >= 768) return 3; // md
         if (window.innerWidth >= 640) return 2; // sm
-        return 1; // default za mobilne
+        return 1; // default za mobilne (jedna kartica po prikazu)
     };
     const [productsPerView, setProductsPerView] = useState(getProductsPerView());
 
@@ -31,7 +32,7 @@ export default function RelatedProductsCarousel({ currentProductId }) {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-
+    // Ukupan broj slajdova se bazira na broju proizvoda i koliko ih se prikazuje istovremeno
     const totalSlides = Math.ceil(displayProducts.length / productsPerView);
 
     // Automatsko pomjeranje slajdova
@@ -64,13 +65,15 @@ export default function RelatedProductsCarousel({ currentProductId }) {
                 <div className="relative">
                     <div className="overflow-hidden">
                         <div
-                            className="flex transition-transform duration-500 ease-in-out"
-                            style={{ transform: `translateX(-${currentSlide * (100 / totalSlides)}%)` }} // Prilagodba za mobilni
+                            // ✨ Dodan gap-4 za razmak između kartica i uklonjen px-2 sa individualnih kartica
+                            className="flex transition-transform duration-500 ease-in-out gap-4"
+                            style={{ transform: `translateX(-${currentSlide * (100 / productsPerView)}%)` }} // Prilagodba za mobilni
                         >
                             {displayProducts.map((product) => (
                                 <div
                                     key={product.id}
-                                    className={`flex-shrink-0 px-2`} // Manji padding za mobilni
+                                    // ✨ Uklonjen px-2, širina se sada dinamički postavlja na osnovu productsPerView
+                                    className={`flex-shrink-0`}
                                     style={{ width: `${100 / productsPerView}%` }} // Dinamička širina kartice
                                 >
                                     <Card product={product} />
