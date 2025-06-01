@@ -45,7 +45,7 @@ export default function Navbar() {
 
                 {/* Centar: Navigacioni Linkovi (Desktop) */}
                 <div className="hidden md:flex space-x-8 flex-1 justify-center">
-                    <a href="#" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-3 py-2 rounded-lg">Početna</a>
+                    <a href="/" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-3 py-2 rounded-lg">Početna</a>
                     <a href="/o-nama" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-3 py-2 rounded-lg">O nama</a>
                     <a href="/proizvodi" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-3 py-2 rounded-lg">Proizvodi</a>
                     <a href="#" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-3 py-2 rounded-lg">Kontakt</a>
@@ -79,7 +79,7 @@ export default function Navbar() {
             {isMobileMenuOpen && (
                 <div className="absolute top-full left-0 w-full bg-white shadow-lg md:hidden z-50 py-4 border-t border-gray-200">
                     <div className="flex flex-col items-center space-y-4">
-                        <a href="#" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-3 rounded-lg">Početna</a>
+                        <a href="/" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-3 rounded-lg">Početna</a>
                         <a href="/o-nama" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-3 rounded-lg">O nama</a>
                         <a href="/proizvodi" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-3 rounded-lg">Proizvodi</a>
                         <a href="#" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-3 rounded-lg">Kontakt</a>

@@ -1,4 +1,4 @@
-// ImageSlider.jsx (prethodno ImageGallery.jsx)
+
 import React, { useState, useEffect } from 'react';
 // ✨ VAŽNO: Instalirajte lucide-react ako već niste: npm install lucide-react
 import { ChevronLeft, ChevronRight } from 'lucide-react';
