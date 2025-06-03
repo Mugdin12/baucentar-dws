@@ -5,6 +5,12 @@
       "ime": "Enis",
       "email": "enisselimovic2005@gmail.com",
       "poruka": "Ovo je poruka od Enis"
+    },
+    {
+      "id": "09f7",
+      "ime": "Mugdin",
+      "email": "mk@gmail.com",
+      "poruka": "Test 2"
     }
   ],
   "users": []
