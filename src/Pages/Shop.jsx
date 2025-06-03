@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useCallback } from 'react'; // Dodani useEffect i useCallback
+// Shop.jsx
+import React, { useState, useEffect, useCallback } from 'react';
 import { products as allProducts } from '../data'; // Preimenovan import da se ne preklapa
 import Card from '../components/Card.jsx'; // Uvezite Card komponentu
 import Navbar from '../components/Navbar'; // Uvezite Navbar komponentu
 import Footer from '../components/Footer'; // Uvezite Footer komponentu
-import ProductFilter from "../components/ProductsFilter.jsx";
+import ProductFilter from "../components/ProductsFilter.jsx"; // Ispravljen naziv fajla za ProductFilter
+
 export default function Shop() {
     const [filteredProducts, setFilteredProducts] = useState(allProducts);
     const [filters, setFilters] = useState({
@@ -48,6 +50,9 @@ export default function Shop() {
         setFilteredProducts(currentFiltered);
     }, [filters]); // Efekat se pokreće svaki put kada se filteri promjene
 
+    // ✨ Ograničite prikaz na prvih 12 proizvoda
+    const productsToDisplay = filteredProducts.slice(0, 12);
+
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col pt-24">
             <Navbar />
@@ -59,8 +64,8 @@ export default function Shop() {
                     <ProductFilter onFilterChange={handleFilterChange} />
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                        {filteredProducts.length > 0 ? (
-                            filteredProducts.map((product) => (
+                        {productsToDisplay.length > 0 ? ( // ✨ Koristite productsToDisplay
+                            productsToDisplay.map((product) => (
                                 <Card key={product.id} product={product} />
                             ))
                         ) : (
