@@ -1,0 +1,11 @@
+{
+  "contacts": [
+    {
+      "id": "0135",
+      "ime": "Enis",
+      "email": "enisselimovic2005@gmail.com",
+      "poruka": "Ovo je poruka od Enis"
+    }
+  ],
+  "users": []
+}

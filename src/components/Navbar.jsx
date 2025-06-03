@@ -48,7 +48,7 @@ export default function Navbar() {
                     <a href="/" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-3 py-2 rounded-lg">Početna</a>
                     <a href="/o-nama" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-3 py-2 rounded-lg">O nama</a>
                     <a href="/proizvodi" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-3 py-2 rounded-lg">Proizvodi</a>
-                    <a href="#" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-3 py-2 rounded-lg">Kontakt</a>
+                    <a href="/kontakt" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-3 py-2 rounded-lg">Kontakt</a>
                 </div>
 
                 {/* Desno: Autentifikacioni Linkovi (Desktop) */}

@@ -4,6 +4,7 @@ import Home from './Pages/Home';
 import About from './Pages/About';
 import Shop from './Pages/Shop';
 import ProductDetail from './Pages/ProductDetail.jsx'; // Uvezite ProductDetail komponentu
+import ContactForm from "./components/ContactForm";
 
 function App() {
     return (
@@ -13,6 +14,7 @@ function App() {
                 <Route path="/o-nama" element={<About />} />
                 <Route path="/proizvodi" element={<Shop />} />
                 <Route path="/proizvodi/:productName" element={<ProductDetail />} />
+                <Route path="/kontakt" element={<ContactForm />} />
             </Routes>
         </Router>
     );
