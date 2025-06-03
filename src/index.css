@@ -2,9 +2,6 @@
 
 body {
   margin: 0;
-  /* Remove or comment out the next two lines */
-  /* display: flex; */
-  /* place-items: center; */
   min-width: 320px;
   min-height: 100vh;
 }
