@@ -4,7 +4,7 @@ import Home from './Pages/Home';
 import About from './Pages/About';
 import Shop from './Pages/Shop';
 import ProductDetail from './Pages/ProductDetail.jsx'; // Uvezite ProductDetail komponentu
-import ContactForm from "./components/ContactForm";
+import ContactForm from "./Pages/ContactForm";
 
 function App() {
     return (
