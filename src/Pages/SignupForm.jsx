@@ -107,7 +107,7 @@ const SignupForm = () => {
 
                 {/* potvrda sifre */}
                 <div className="mb-10">
-                    <label className="block font-medium mb-2 text-lg">Email:</label>
+                    <label className="block font-medium mb-2 text-lg">Ponovite sifru:</label>
                     <input
                         type="password"
                         name="repeat-password"
