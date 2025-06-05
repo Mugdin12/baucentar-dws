@@ -53,8 +53,8 @@ export default function Navbar() {
 
                 {/* Desno: Autentifikacioni Linkovi (Desktop) */}
                 <div className="hidden md:flex space-x-4 items-center">
-                    <a href="#" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-4 py-2 rounded-lg">Prijavi se</a>
-                    <a href="#" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-4 py-2 rounded-lg">Registruj se</a>
+                    <a href="/prijavi-se" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-4 py-2 rounded-lg">Prijavi se</a>
+                    <a href="/registruj-se" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-4 py-2 rounded-lg">Registruj se</a>
                 </div>
 
                 {/* Dugme za Mobilni Meni (Hamburger ikona) */}
@@ -84,8 +84,8 @@ export default function Navbar() {
                         <a href="/proizvodi" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-3 rounded-lg">Proizvodi</a>
                         <a href="#" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-3 rounded-lg">Kontakt</a>
                         <div className="w-full h-px bg-gray-200 my-2"></div>
-                        <a href="#" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-4 rounded-lg">Prijavi se</a>
-                        <a href="#" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-4 rounded-lg">Registruj se</a>
+                        <a href="/prijavi-se" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-4 rounded-lg">Prijavi se</a>
+                        <a href="/registruj-se" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-4 rounded-lg">Registruj se</a>
                     </div>
                 </div>
             )}

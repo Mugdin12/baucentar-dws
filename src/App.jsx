@@ -5,6 +5,8 @@ import About from './Pages/About';
 import Shop from './Pages/Shop';
 import ProductDetail from './Pages/ProductDetail.jsx'; // Uvezite ProductDetail komponentu
 import ContactForm from "./Pages/ContactForm";
+import SigninForm from "./Pages/SigninForm";
+import SignupForm from "./Pages/SignupForm";
 
 function App() {
     return (
@@ -15,6 +17,8 @@ function App() {
                 <Route path="/proizvodi" element={<Shop />} />
                 <Route path="/proizvodi/:productName" element={<ProductDetail />} />
                 <Route path="/kontakt" element={<ContactForm />} />
+                <Route path="/prijavi-se" element={<SigninForm />} />
+                <Route path="/registruj-se" element={<SignupForm />} />
             </Routes>
         </Router>
     );
