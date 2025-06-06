@@ -9,8 +9,8 @@ import SigninForm from "./Pages/SigninForm";
 import SignupForm from "./Pages/SignupForm";
 import { AuthProvider } from './contexts/AuthContext';
 import { CartProvider } from './contexts/CartContext';
-import Cart from './components/Cart.jsx';
-
+import Cart from './Pages/Cart.jsx';
+import AdminPanel from './pages/AdminPanel';
 function App() {
     return (
         <Router>
@@ -25,6 +25,7 @@ function App() {
                         <Route path="/prijavi-se" element={<SigninForm />} />
                         <Route path="/registruj-se" element={<SignupForm />} />
                         <Route path="/kosarica" element={<Cart />} />
+                        <Route path="/admin" element={<AdminPanel />} />
                     </Routes>
                 </CartProvider>
             </AuthProvider>
