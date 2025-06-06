@@ -1,9 +1,27 @@
 import React from 'react';
-import WishlistIcon from './WishlistIcon'; // Uvezite novu WishlistIcon komponentu
+import { useNavigate } from 'react-router-dom'; // ✨ Dodan useNavigate
+import WishlistIcon from './WishlistIcon';
+import { useAuth } from '../contexts/AuthContext'; // ✨ Uvezen useAuth hook (putanja prilagođena za components folder)
 
 export default function ProductDisplay({ product }) {
+    const navigate = useNavigate(); // ✨ Inicijalizovan useNavigate
+    const { currentUser } = useAuth(); // ✨ Dohvaćen currentUser iz konteksta
+
+    // Funkcija za obradu klika na dugme "Dodaj u Korpu"
+    const handleAddToCart = (e) => {
+        e.preventDefault(); // Sprečava podrazumevano ponašanje (ako je dugme unutar forme ili linka)
+
+        if (!currentUser) {
+            // Ako korisnik nije prijavljen, preusmeri ga na stranicu za prijavu
+            navigate('/prijavi-se');
+        } else {
+            // Ako je korisnik prijavljen, ovde bi išla logika za dodavanje proizvoda u korpu
+            console.log(`Proizvod "${product.name}" dodan u korpu (korisnik prijavljen).`);
+            // Primer: addProductToCart(product);
+        }
+    };
+
     return (
-        // Dodana 'relative' klasa na glavni div za pozicioniranje ikone
         <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-8 grid grid-cols-1 md:grid-cols-2 gap-8 relative">
             {/* Slika proizvoda */}
             <div className="flex justify-center items-center">
@@ -36,7 +54,9 @@ export default function ProductDisplay({ product }) {
                     <li>Brza dostava za 2-3 radna dana</li>
                     <li>Garancija kvaliteta</li>
                 </ul>
-                <button className="bg-green-600 text-white font-semibold px-8 py-4 rounded-lg shadow-md hover:bg-green-700 transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 text-lg">
+                <button
+                    onClick={handleAddToCart} // ✨ Povezivanje dugmeta sa handleAddToCart funkcijom
+                    className="bg-green-600 text-white font-semibold px-8 py-4 rounded-lg shadow-md hover:bg-green-700 transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 text-lg">
                     Dodaj u Korpu
                 </button>
             </div>

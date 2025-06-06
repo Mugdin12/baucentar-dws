@@ -59,7 +59,7 @@ export default function Navbar() {
                 <div className="hidden md:flex space-x-8 flex-1 justify-center">
                     <Link to="/" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-3 py-2 rounded-lg">Početna</Link>
                     <Link to="/o-nama" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-3 py-2 rounded-lg">O nama</Link>
-                    <Link to="/Shop" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-3 py-2 rounded-lg">Proizvodi</Link>
+                    <Link to="/proizvodi" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-3 py-2 rounded-lg">Proizvodi</Link>
                     <Link to="/kontakt" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-3 py-2 rounded-lg">Kontakt</Link>
                 </div>
 
@@ -125,7 +125,7 @@ export default function Navbar() {
                     <div className="flex flex-col items-center space-y-4">
                         <Link to="/" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-3 rounded-lg">Početna</Link>
                         <Link to="/o-nama" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-3 rounded-lg">O nama</Link>
-                        <Link to="/Shop" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-3 rounded-lg">Proizvodi</Link>
+                        <Link to="/proizvodi" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-3 rounded-lg">Proizvodi</Link>
                         <Link to="/kontakt" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-3 rounded-lg">Kontakt</Link>
                         <div className="w-full h-px bg-gray-200 my-2"></div>
                         {currentUser ? (

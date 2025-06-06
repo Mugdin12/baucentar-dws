@@ -1,15 +1,32 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // ž
 import WishlistIcon from '../components/WishlistIcon.jsx';
+import { useAuth } from '../contexts/AuthContext'; //
 
 export default function Card({ product }) {
+    const { currentUser } = useAuth(); // ✨ Dohvaćen currentUser iz konteksta
+    const navigate = useNavigate(); // ✨ Inicijalizovan useNavigate
+
+    const handleAddToCart = (e) => {
+        e.preventDefault(); // Sprečava navigaciju cele kartice kada se klikne dugme
+
+        if (!currentUser) {
+            // Ako korisnik nije prijavljen, preusmeri ga na stranicu za prijavu
+            navigate('/prijavi-se');
+        } else {
+            // Ako je korisnik prijavljen, ovde bi išla logika za dodavanje proizvoda u korpu
+            console.log(`Proizvod "${product.name}" dodan u korpu (korisnik prijavljen).`);
+            // Primer: addProductToCart(product);
+        }
+    };
+
     return (
         <div className="group relative bg-white rounded-lg shadow-lg overflow-hidden transform transition-transform duration-300 hover:scale-[1.02] flex flex-col min-h-[420px] h-full">
-            {/* WishlistIcon is outside the Link, so clicking it won't trigger navigation */}
+            {/* WishlistIcon je izvan Linka, tako da klik na nju neće pokrenuti navigaciju */}
             <WishlistIcon
                 productId={product.id}
                 productName={product.name}
-                positionClasses="absolute top-2 right-2 opacity-0 group-hover:opacity-100"
+                positionClasses="absolute top-2 right-2 opacity-0 group-hover:opacity-100 z-20 pointer-events-auto" // Dodan z-20 i pointer-events-auto za bolju interakciju
                 iconSize={24}
             />
             <Link
@@ -29,7 +46,7 @@ export default function Card({ product }) {
                     <p className="text-gray-600 text-sm mb-4 line-clamp-3 h-[60px] overflow-hidden w-full">{product.description}</p>
                     <div className="flex-grow" />
                     <button
-                        onClick={(e) => e.preventDefault()}
+                        onClick={handleAddToCart} // Poziva novu handleAddToCart funkciju
                         className="bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-green-700 transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 mt-auto"
                     >
                         Dodaj u Korpu
