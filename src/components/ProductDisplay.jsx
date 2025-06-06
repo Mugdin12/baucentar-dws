@@ -1,37 +1,45 @@
-import React, { useState } from 'react';
+// src/components/ProductDisplay.jsx
+import React, { useState } from 'react'; // Dodan useState za lokalno upravljanje modalom
 import { useNavigate } from 'react-router-dom';
 import WishlistIcon from './WishlistIcon';
 import { useAuth } from '../contexts/AuthContext';
-import successGif from '../slike/7efs.gif'; // Uvezite GIF datoteku
-import AddToCartSuccessModal from './AddToCartSuccessModal'; // Uvezite novu komponentu
+import { useCart } from '../contexts/CartContext';
+// ✨ Uvezite GIF datoteku i modal komponentu
+import successGif from '../slike/7efs.gif';
+import AddToCartSuccessModal from './AddToCartSuccessModal';
 
-export default function ProductDisplay({ product }) {
+
+export default function ProductDisplay({ product }) { // ✨ Uklonjen onProductAddedToCart prop
     const navigate = useNavigate();
     const { currentUser } = useAuth();
+    const { addToCart } = useCart();
 
-    // Stanje za kontrolu vidljivosti modalnog prozora i poruke
+    // ✨ Stanje za kontrolu vidljivosti modalnog prozora i poruke
     const [showSuccessModal, setShowSuccessModal] = useState(false);
     const [modalMessage, setModalMessage] = useState('');
 
-    // Funkcija za obradu klika na dugme "Dodaj u Korpu"
     const handleAddToCart = (e) => {
         e.preventDefault();
 
         if (!currentUser) {
-            // Ako korisnik nije prijavljen, preusmeri ga na stranicu za prijavu
             navigate('/prijavi-se');
         } else {
-            // Ako je korisnik prijavljen, ovde bi išla logika za dodavanje proizvoda u korpu
-            console.log(`Proizvod "${product.name}" dodan u korpu (korisnik prijavljen).`);
-            // Primer: addProductToCart(product);
+            try {
+                // Pozivamo addToCart iz CartContext-a
+                addToCart(product, 1);
+                console.log(`Proizvod "${product.name}" dodan u korpu (lokalno ažurirano).`);
 
-            // Prikaz modalnog prozora o uspehu
-            setModalMessage(`${currentUser.username || 'Korisniče'}, uspješno ste dodali "${product.name}" u korpu!`);
-            setShowSuccessModal(true);
+                // Prikaz modalnog prozora o uspehu
+                setModalMessage(`${currentUser.username || 'Korisniče'}, uspješno ste dodali "${product.name}" u korpu!`);
+                setShowSuccessModal(true);
+            } catch (error) {
+                console.error("Greška pri dodavanju u korpu:", error);
+                // Opcionalno: Prikazati poruku o grešci korisniku
+            }
         }
     };
 
-    // Funkcija za ručno zatvaranje modalnog prozora (proslijeđuje se novoj komponenti)
+    // ✨ Funkcija za ručno zatvaranje modalnog prozora
     const handleCloseModal = () => {
         setShowSuccessModal(false);
         setModalMessage('');
@@ -77,13 +85,15 @@ export default function ProductDisplay({ product }) {
                 </button>
             </div>
 
-            {/* Renderujte novu komponentu za modalni prozor */}
-            <AddToCartSuccessModal
-                showModal={showSuccessModal}
-                message={modalMessage}
-                gifSrc={successGif}
-                onClose={handleCloseModal}
-            />
+            {/* ✨ Modalni prozor za uspeh dodavanja u korpu (sada renderovan ovde) */}
+            {showSuccessModal && (
+                <AddToCartSuccessModal
+                    showModal={showSuccessModal}
+                    message={modalMessage}
+                    gifSrc={successGif}
+                    onClose={handleCloseModal}
+                />
+            )}
         </div>
     );
 }

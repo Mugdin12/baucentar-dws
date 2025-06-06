@@ -8,20 +8,25 @@ import ContactForm from "./Pages/ContactForm";
 import SigninForm from "./Pages/SigninForm";
 import SignupForm from "./Pages/SignupForm";
 import { AuthProvider } from './contexts/AuthContext';
+import { CartProvider } from './contexts/CartContext';
+import Cart from './components/Cart.jsx';
 
 function App() {
     return (
         <Router>
             <AuthProvider>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/o-nama" element={<About />} />
-                    <Route path="/proizvodi" element={<Shop />} />
-                    <Route path="/proizvodi/:productName" element={<ProductDetail />} />
-                    <Route path="/kontakt" element={<ContactForm />} />
-                    <Route path="/prijavi-se" element={<SigninForm />} />
-                    <Route path="/registruj-se" element={<SignupForm />} />
-                </Routes>
+                <CartProvider>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/o-nama" element={<About />} />
+                        <Route path="/proizvodi" element={<Shop />} />
+                        <Route path="/proizvodi/:productName" element={<ProductDetail />} />
+                        <Route path="/kontakt" element={<ContactForm />} />
+                        <Route path="/prijavi-se" element={<SigninForm />} />
+                        <Route path="/registruj-se" element={<SignupForm />} />
+                        <Route path="/kosarica" element={<Cart />} />
+                    </Routes>
+                </CartProvider>
             </AuthProvider>
         </Router>
     );
