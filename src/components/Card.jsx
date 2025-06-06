@@ -1,11 +1,17 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // ž
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import WishlistIcon from '../components/WishlistIcon.jsx';
-import { useAuth } from '../contexts/AuthContext'; //
+import { useAuth } from '../contexts/AuthContext';
+import successGif from '../slike/7efs.gif';
+import AddToCartSuccessModal from '../components/AddToCartSuccessModal';
 
 export default function Card({ product }) {
-    const { currentUser } = useAuth(); // ✨ Dohvaćen currentUser iz konteksta
-    const navigate = useNavigate(); // ✨ Inicijalizovan useNavigate
+    const { currentUser } = useAuth();
+    const navigate = useNavigate();
+
+    // Stanje za kontrolu vidljivosti modalnog prozora i poruke
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
+    const [modalMessage, setModalMessage] = useState('');
 
     const handleAddToCart = (e) => {
         e.preventDefault(); // Sprečava navigaciju cele kartice kada se klikne dugme
@@ -17,7 +23,17 @@ export default function Card({ product }) {
             // Ako je korisnik prijavljen, ovde bi išla logika za dodavanje proizvoda u korpu
             console.log(`Proizvod "${product.name}" dodan u korpu (korisnik prijavljen).`);
             // Primer: addProductToCart(product);
+
+            // Prikaz modalnog prozora o uspehu
+            setModalMessage(`${currentUser.username || 'Korisniče'}, uspješno ste dodali "${product.name}" u korpu!`);
+            setShowSuccessModal(true);
         }
+    };
+
+    // Funkcija za ručno zatvaranje modalnog prozora
+    const handleCloseModal = () => {
+        setShowSuccessModal(false);
+        setModalMessage('');
     };
 
     return (
@@ -26,7 +42,7 @@ export default function Card({ product }) {
             <WishlistIcon
                 productId={product.id}
                 productName={product.name}
-                positionClasses="absolute top-2 right-2 opacity-0 group-hover:opacity-100 z-20 pointer-events-auto" // Dodan z-20 i pointer-events-auto za bolju interakciju
+                positionClasses="absolute top-2 right-2 opacity-0 group-hover:opacity-100 z-20 pointer-events-auto"
                 iconSize={24}
             />
             <Link
@@ -46,13 +62,21 @@ export default function Card({ product }) {
                     <p className="text-gray-600 text-sm mb-4 line-clamp-3 h-[60px] overflow-hidden w-full">{product.description}</p>
                     <div className="flex-grow" />
                     <button
-                        onClick={handleAddToCart} // Poziva novu handleAddToCart funkciju
+                        onClick={handleAddToCart}
                         className="bg-green-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-green-700 transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 mt-auto"
                     >
                         Dodaj u Korpu
                     </button>
                 </div>
             </Link>
+
+            {/* Modalni prozor za uspeh dodavanja u korpu */}
+            <AddToCartSuccessModal
+                showModal={showSuccessModal}
+                message={modalMessage}
+                gifSrc={successGif}
+                onClose={handleCloseModal}
+            />
         </div>
     );
 }
