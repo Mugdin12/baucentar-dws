@@ -1,7 +1,9 @@
+// Navbar.jsx
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'; // Added this import
+import { Link } from 'react-router-dom';
 import Logo from "../slike/logo.jpg";
-import { ShoppingCart, User, LogOut } from 'lucide-react';
+// ✨ Dodana ikona za Admin panel (Settings)
+import { ShoppingCart, User, LogOut, Settings } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 export default function Navbar() {
@@ -29,6 +31,8 @@ export default function Navbar() {
 
     const handleLogout = () => {
         logout();
+        // Opcionalno: preusmeri korisnika na početnu stranicu ili stranicu za prijavu nakon odjave
+        // navigate('/prijavi-se'); // ako koristite navigate
     };
 
     return (
@@ -63,13 +67,25 @@ export default function Navbar() {
                 <div className="hidden md:flex space-x-4 items-center">
                     {currentUser ? (
                         <>
-                            <Link to="/kosarica" className="text-gray-700 hover:bg-green-600 hover:text-white transition-all px-3 py-2 rounded-lg">
-                                <ShoppingCart size={24} />
-                            </Link>
-                            <Link to="/profil" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-3 py-2 rounded-lg flex items-center">
-                                <User size={24} className="mr-1" />
-                                {currentUser.username}
-                            </Link>
+                            {/* ✨ Uslovno renderovanje na osnovu uloge */}
+                            {currentUser.role === 'admin' ? (
+                                <Link to="/admin" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-4 py-2 rounded-lg flex items-center">
+                                    <Settings size={24} className="mr-1" /> Admin
+                                </Link>
+                            ) : (
+                                <>
+                                    {/* Ikona košarice za ne-admin korisnike */}
+                                    <Link to="/kosarica" className="text-gray-700 hover:bg-green-600 hover:text-white transition-all px-3 py-2 rounded-lg">
+                                        <ShoppingCart size={24} />
+                                    </Link>
+                                    {/* Ikona korisničkog profila za ne-admin korisnike */}
+                                    <Link to="/profil" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-3 py-2 rounded-lg flex items-center">
+                                        <User size={24} className="mr-1" />
+                                        {currentUser.username}
+                                    </Link>
+                                </>
+                            )}
+                            {/* Dugme za odjavu je uvijek prisutno ako je korisnik prijavljen */}
                             <button
                                 onClick={handleLogout}
                                 className="text-gray-700 hover:bg-red-600 hover:text-white font-medium transition-all px-4 py-2 rounded-lg flex items-center"
@@ -114,12 +130,21 @@ export default function Navbar() {
                         <div className="w-full h-px bg-gray-200 my-2"></div>
                         {currentUser ? (
                             <>
-                                <Link to="/kosarica" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-3 rounded-lg flex items-center justify-center">
-                                    <ShoppingCart size={24} className="mr-2" /> Košarica
-                                </Link>
-                                <Link to="/profil" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-3 rounded-lg flex items-center justify-center">
-                                    <User size={24} className="mr-2" /> Profil
-                                </Link>
+                                {/* ✨ Uslovno renderovanje u mobilnom meniju */}
+                                {currentUser.role === 'admin' ? (
+                                    <Link to="/admin" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-3 rounded-lg flex items-center justify-center">
+                                        <Settings size={24} className="mr-2" /> Admin
+                                    </Link>
+                                ) : (
+                                    <>
+                                        <Link to="/kosarica" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-3 rounded-lg flex items-center justify-center">
+                                            <ShoppingCart size={24} className="mr-2" /> Košarica
+                                        </Link>
+                                        <Link to="/profil" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-3 rounded-lg flex items-center justify-center">
+                                            <User size={24} className="mr-2" /> Profil
+                                        </Link>
+                                    </>
+                                )}
                                 <button
                                     onClick={handleLogout}
                                     className="text-gray-700 hover:bg-red-600 hover:text-white font-medium w-full text-center py-2 px-4 rounded-lg flex items-center justify-center"
