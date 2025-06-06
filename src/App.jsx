@@ -7,19 +7,22 @@ import ProductDetail from './Pages/ProductDetail.jsx'; // Uvezite ProductDetail 
 import ContactForm from "./Pages/ContactForm";
 import SigninForm from "./Pages/SigninForm";
 import SignupForm from "./Pages/SignupForm";
+import { AuthProvider } from './contexts/AuthContext';
 
 function App() {
     return (
         <Router>
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/o-nama" element={<About />} />
-                <Route path="/proizvodi" element={<Shop />} />
-                <Route path="/proizvodi/:productName" element={<ProductDetail />} />
-                <Route path="/kontakt" element={<ContactForm />} />
-                <Route path="/prijavi-se" element={<SigninForm />} />
-                <Route path="/registruj-se" element={<SignupForm />} />
-            </Routes>
+            <AuthProvider>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/o-nama" element={<About />} />
+                    <Route path="/proizvodi" element={<Shop />} />
+                    <Route path="/proizvodi/:productName" element={<ProductDetail />} />
+                    <Route path="/kontakt" element={<ContactForm />} />
+                    <Route path="/prijavi-se" element={<SigninForm />} />
+                    <Route path="/registruj-se" element={<SignupForm />} />
+                </Routes>
+            </AuthProvider>
         </Router>
     );
 }

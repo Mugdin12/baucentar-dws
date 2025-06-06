@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import Navbar from "../components/Navbar"; // Putanja do Navbar komponente
-import Footer from "../components/Footer"; // Putanja do Footer komponente
-import { useNavigate } from "react-router-dom"; //  Uvezen useNavigate
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from '../contexts/AuthContext';
 
-
-export default function Signin() { // Preimenovano u Signin za dosljednost
-    const [formData, setFormData] = useState({ username: "", password: ""});
+export default function SigninForm() {
+    const [formData, setFormData] = useState({ username: "", password: "" });
     const [errors, setErrors] = useState({});
     const [successMsg, setSuccessMsg] = useState("");
-    const navigate = useNavigate(); //  Inicijalizovan useNavigate
+    const navigate = useNavigate();
+    const { login } = useAuth();
 
     const validate = () => {
         const newErrors = {};
@@ -33,18 +34,11 @@ export default function Signin() { // Preimenovano u Signin za dosljednost
         }
 
         try {
-            // ✨ Provjera korisničkih podataka na json-serveru
             const response = await fetch(`http://localhost:3001/users?username=${formData.username}&password=${formData.password}`);
             const users = await response.json();
 
             if (!response.ok) {
-                let errorData = {};
-                try {
-                    errorData = await response.json();
-                } catch (jsonError) {
-                    throw new Error(`Greška pri prijavi: ${response.statusText}`);
-                }
-                throw new Error(errorData.message || "Greška pri prijavi.");
+                throw new Error(`Greška pri prijavi: ${response.statusText}`);
             }
 
             if (users.length === 0) {
@@ -53,16 +47,15 @@ export default function Signin() { // Preimenovano u Signin za dosljednost
                 return;
             }
 
-            // Ako je korisnik pronađen
-            setFormData({ username: "", password: ""});
+            const loggedInUser = users[0];
+            login(loggedInUser);
+
+            setFormData({ username: "", password: "" });
             setSuccessMsg("Uspješna prijava! Preusmjeravam na početnu stranicu...");
             setErrors({});
-            console.log("Korisnik prijavljen:", users[0]);
-
-            //  Preusmeravanje na početnu stranicu nakon uspješne prijave
             setTimeout(() => {
                 navigate("/");
-            }, 2000); // Preusmeri nakon 2 sekunde
+            }, 2000);
         } catch (error) {
             setSuccessMsg("");
             setErrors({ submit: error.message || "Došlo je do greške, pokušajte ponovo." });
@@ -85,7 +78,6 @@ export default function Signin() { // Preimenovano u Signin za dosljednost
                     />
                     {errors.username && <div className="text-red-600 mt-1 text-sm">{errors.username}</div>}
                 </div>
-
                 <div className="mb-8">
                     <label className="block font-medium mb-2 text-lg">Šifra:</label>
                     <input
@@ -97,14 +89,12 @@ export default function Signin() { // Preimenovano u Signin za dosljednost
                     />
                     {errors.password && <div className="text-red-600 mt-1 text-sm">{errors.password}</div>}
                 </div>
-
                 <button
                     type="submit"
                     className="bg-green-600 text-white font-semibold px-6 py-3 rounded hover:bg-green-700 transition-colors w-full"
                 >
                     Prijavi se
                 </button>
-
                 {errors.submit && <div className="text-red-600 mt-4 text-center">{errors.submit}</div>}
                 {successMsg && <div className="text-green-700 mt-4 text-center">{successMsg}</div>}
             </form>
@@ -112,5 +102,3 @@ export default function Signin() { // Preimenovano u Signin za dosljednost
         </div>
     );
 }
-
-
