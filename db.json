@@ -11,7 +11,40 @@
       "ime": "Mugdin",
       "email": "mk@gmail.com",
       "poruka": "Test 2"
+    },
+    {
+      "id": "9fec",
+      "ime": "Mugdin",
+      "email": "mk@gmail.com",
+      "poruka": "Novi test"
     }
   ],
-  "users": []
+  "users": [
+    {
+      "id": "1",
+      "username": "admin",
+      "password": "admin123",
+      "role": "admin"
+    },
+    {
+      "id": "2",
+      "username": "user",
+      "password": "user123",
+      "role": "admin"
+    },
+    {
+      "id": "33cf",
+      "username": "Mugdin12",
+      "email": "mk@gmail.com",
+      "password": "123456",
+      "role": "guest"
+    },
+    {
+      "id": "7d71",
+      "username": "Mugdin",
+      "email": "mk2@gmail.com",
+      "password": "123456",
+      "role": "guest"
+    }
+  ]
 }

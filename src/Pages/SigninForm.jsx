@@ -1,18 +1,19 @@
 import React, { useState } from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import Navbar from "../components/Navbar"; // Putanja do Navbar komponente
+import Footer from "../components/Footer"; // Putanja do Footer komponente
+import { useNavigate } from "react-router-dom"; //  Uvezen useNavigate
 
-const SigninForm = () => {
+
+export default function Signin() { // Preimenovano u Signin za dosljednost
     const [formData, setFormData] = useState({ username: "", password: ""});
     const [errors, setErrors] = useState({});
     const [successMsg, setSuccessMsg] = useState("");
-    
+    const navigate = useNavigate(); //  Inicijalizovan useNavigate
+
     const validate = () => {
         const newErrors = {};
-        if (!formData.username.trim()) newErrors.username = "Korisnicko ime je obavezno";
-
-        if (!formData.password.trim()) newErrors.password = "Sifra je obavezna";
-
+        if (!formData.username.trim()) newErrors.username = "Korisničko ime je obavezno.";
+        if (!formData.password.trim()) newErrors.password = "Šifra je obavezna.";
         return newErrors;
     };
 
@@ -32,31 +33,49 @@ const SigninForm = () => {
         }
 
         try {
-            /* const response = await fetch("http://localhost:3001/contacts", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData),
-            });
+            // ✨ Provjera korisničkih podataka na json-serveru
+            const response = await fetch(`http://localhost:3001/users?username=${formData.username}&password=${formData.password}`);
+            const users = await response.json();
 
-            if (!response.ok) throw new Error("Greška pri slanju poruke"); */
+            if (!response.ok) {
+                let errorData = {};
+                try {
+                    errorData = await response.json();
+                } catch (jsonError) {
+                    throw new Error(`Greška pri prijavi: ${response.statusText}`);
+                }
+                throw new Error(errorData.message || "Greška pri prijavi.");
+            }
 
-            setFormData({ username: "",passowrd: ""});
-            setSuccessMsg("Uspješna prijava!");
+            if (users.length === 0) {
+                setErrors({ submit: "Netačno korisničko ime ili šifra." });
+                setSuccessMsg("");
+                return;
+            }
+
+            // Ako je korisnik pronađen
+            setFormData({ username: "", password: ""});
+            setSuccessMsg("Uspješna prijava! Preusmjeravam na početnu stranicu...");
             setErrors({});
+            console.log("Korisnik prijavljen:", users[0]);
+
+            //  Preusmeravanje na početnu stranicu nakon uspješne prijave
+            setTimeout(() => {
+                navigate("/");
+            }, 2000); // Preusmeri nakon 2 sekunde
         } catch (error) {
             setSuccessMsg("");
-            setErrors({ submit: "Došlo je do greške, pokušajte ponovo." });
+            setErrors({ submit: error.message || "Došlo je do greške, pokušajte ponovo." });
         }
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 flex flex-col pt-24">
-            <Navbar /> {/* Renderujte vašu Navbar komponentu */}
-
-            <form onSubmit={handleSubmit} noValidate className="max-w-xl mx-auto p-6 pt-24">
-                {/* Korisnicko ime */}
-                <div className="mb-10">
-                    <label className="block font-medium mb-2 text-lg">Korisnicko ime:</label>
+        <div className="min-h-screen bg-gray-50 flex flex-col">
+            <Navbar />
+            <form onSubmit={handleSubmit} noValidate className="max-w-xl mx-auto p-6 pt-24 flex-grow">
+                <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Prijava</h2>
+                <div className="mb-6">
+                    <label className="block font-medium mb-2 text-lg">Korisničko ime:</label>
                     <input
                         type="text"
                         name="username"
@@ -64,12 +83,11 @@ const SigninForm = () => {
                         onChange={handleChange}
                         className="w-full border border-gray-300 rounded px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-green-600"
                     />
-                    {errors.username && <div className="text-red-600 mt-1">{errors.username}</div>}
+                    {errors.username && <div className="text-red-600 mt-1 text-sm">{errors.username}</div>}
                 </div>
 
-                {/* sifra */}
-                <div className="mb-10">
-                    <label className="block font-medium mb-2 text-lg">Sifra:</label>
+                <div className="mb-8">
+                    <label className="block font-medium mb-2 text-lg">Šifra:</label>
                     <input
                         type="password"
                         name="password"
@@ -77,22 +95,22 @@ const SigninForm = () => {
                         onChange={handleChange}
                         className="w-full border border-gray-300 rounded px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-green-600"
                     />
-                    {errors.password && <div className="text-red-600 mt-1">{errors.password}</div>}
+                    {errors.password && <div className="text-red-600 mt-1 text-sm">{errors.password}</div>}
                 </div>
 
-                {/* submit */}
                 <button
                     type="submit"
-                    className="bg-green-600 text-white font-semibold px-6 py-3 rounded hover:bg-green-700 transition-colors"
+                    className="bg-green-600 text-white font-semibold px-6 py-3 rounded hover:bg-green-700 transition-colors w-full"
                 >
                     Prijavi se
                 </button>
 
-                {errors.submit && <div className="text-red-600 mt-4">{errors.submit}</div>}
-                {successMsg && <div className="text-green-700 mt-4">{successMsg}</div>}
+                {errors.submit && <div className="text-red-600 mt-4 text-center">{errors.submit}</div>}
+                {successMsg && <div className="text-green-700 mt-4 text-center">{successMsg}</div>}
             </form>
+            <Footer />
         </div>
-    )
+    );
 }
 
-export default SigninForm;
+
