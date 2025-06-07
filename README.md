@@ -90,7 +90,7 @@ Aplikacija pruža osnovne e-commerce funkcionalnosti sa čistim i modernim dizaj
 ### Funkcionalnosti:
 * **Prikaz Proizvoda:**
     * **Početna stranica (`/`):** Prikazuje klizni karusel slika (`ImageSlider`), istaknute proizvode (`FeaturedProducts`) i kategorije proizvoda (`Hero`).
-    * **Stranica prodavnice (`/Shop`):** Prikazuje sve dostupne proizvode sa mogućnošću pretrage (`ProductFilter`) po nazivu/opisu i filtriranja po cenovnom rangu. Podržava paginaciju.
+    * **Stranica prodavnice (`/proizvodi`):** Prikazuje sve dostupne proizvode sa mogućnošću pretrage (`ProductFilter`) po nazivu/opisu i filtriranja po cenovnom rangu. Podržava paginaciju.
     * **Detalji proizvoda (`/proizvodi/:productName`):** Detaljan prikaz pojedinačnog proizvoda (`ProductDisplay`) sa opisom, cenom i dugmetom "Dodaj u Korpu". Prikazuje i karusel povezanih proizvoda.
 * **Korpa za Kupovinu:**
     * Dodavanje proizvoda u korpu (direktno iz `Card` i `ProductDisplay` komponenti).
@@ -107,7 +107,6 @@ Aplikacija pruža osnovne e-commerce funkcionalnosti sa čistim i modernim dizaj
     * **Kontrola pristupa:** Samo korisnici sa ulogom "admin" mogu pristupiti panelu. Neautentifikovani ili ne-admin korisnici se preusmeravaju na početnu stranicu.
     * **Pregled narudžbina:** Prikazuje sve pristigle narudžbine sa detaljima kao što su korisnik, stavke, ukupna cena, datum i status.
     * **Promena statusa narudžbine:** Administrator može promeniti status narudžbine (npr. "Pending", "Approved", "Rejected") putem dugmadi.
-    * **Dodavanje proizvoda:** Forma za dodavanje novih proizvoda u sistem, koji se zatim čuvaju na `json-serveru` i postaju dostupni na sajtu.
 * **Interaktivni Elementi:**
     * **Lista želja (frontend-only):** Ikona srca na karticama proizvoda koja vizuelno pokazuje dodavanje/uklanjanje iz liste želja (trenutno nema backend perzistenciju).
     * **Modalni prozori:** Prikazuju poruke o uspešnim akcijama (npr. "Proizvod dodan u korpu!" ili "Proizvod uspješno dodan!").
