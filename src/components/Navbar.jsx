@@ -96,7 +96,7 @@ export default function Navbar() {
                     ) : (
                         <>
                             <Link to="/prijavi-se" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-4 py-2 rounded-lg">Prijavi se</Link>
-                            <Link to="/registracija" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-4 py-2 rounded-lg">Registruj se</Link>
+                            <Link to="/registruj-se" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium transition-all px-4 py-2 rounded-lg">Registruj se</Link>
                         </>
                     )}
                 </div>
@@ -160,7 +160,7 @@ export default function Navbar() {
                         ) : (
                             <>
                                 <Link to="/prijavi-se" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-4 rounded-lg">Prijavi se</Link>
-                                <Link to="/registracija" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-4 rounded-lg">Registruj se</Link>
+                                <Link to="/registruj-se" className="text-gray-700 hover:bg-green-600 hover:text-white font-medium w-full text-center py-2 px-4 rounded-lg">Registruj se</Link>
                             </>
                         )}
                     </div>
