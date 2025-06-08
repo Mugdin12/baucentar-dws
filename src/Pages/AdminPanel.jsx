@@ -7,6 +7,7 @@ import OrdersDisplay from '../components/OrdersDisplay';
 
 export default function AdminPanel() {
     const [orders, setOrders] = useState([]);
+    const [contacts, setContacts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const { currentUser } = useAuth();
@@ -18,14 +19,22 @@ export default function AdminPanel() {
             return;
         }
 
-        const fetchOrders = async () => {
+        const fetchData = async () => {
             try {
-                const response = await fetch("http://localhost:3001/orders");
-                if (!response.ok) {
-                    throw new Error(`Greška pri dohvatanju narudžbina: ${response.statusText}`);
+                const [ordersRes, contactsRes] = await Promise.all([
+                    fetch("http://localhost:3001/orders"),
+                    fetch("http://localhost:3001/contacts")
+                ]);
+
+                if (!ordersRes.ok || !contactsRes.ok) {
+                    throw new Error('Greška pri dohvatanju podataka.');
                 }
-                const data = await response.json();
-                setOrders(data);
+
+                const ordersData = await ordersRes.json();
+                const contactsData = await contactsRes.json();
+
+                setOrders(ordersData);
+                setContacts(contactsData);
             } catch (err) {
                 setError(err.message);
             } finally {
@@ -33,14 +42,13 @@ export default function AdminPanel() {
             }
         };
 
-        fetchOrders();
+        fetchData();
     }, [currentUser, navigate]);
 
-    // Funkcija za ažuriranje statusa narudžbine
     const handleUpdateOrderStatus = async (orderId, newStatus) => {
         try {
             const response = await fetch(`http://localhost:3001/orders/${orderId}`, {
-                method: 'PATCH', // Koristimo PATCH za delimično ažuriranje resursa
+                method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -51,21 +59,17 @@ export default function AdminPanel() {
                 throw new Error(`Greška pri ažuriranju statusa narudžbine: ${response.statusText}`);
             }
 
-            // Ažuriraj stanje narudžbina u Reactu kako bi se UI odmah osvežio
             setOrders(prevOrders =>
                 prevOrders.map(order =>
                     order.id === orderId ? { ...order, status: newStatus } : order
                 )
             );
-            console.log(`Status narudžbine #${orderId} ažuriran na: ${newStatus}`);
-
         } catch (err) {
             console.error("Greška pri ažuriranju statusa narudžbine:", err);
-            setError(err.message); // Prikazati grešku korisniku ako se desi
+            setError(err.message);
         }
     };
 
-    // Funkcija za arhiviranje (brisanje) narudžbine
     const handleArchiveOrder = async (orderId) => {
         if (window.confirm(`Da li ste sigurni da želite arhivirati (obrisati) narudžbinu #${orderId}? Ova akcija je nepovratna.`)) {
             try {
@@ -77,10 +81,7 @@ export default function AdminPanel() {
                     throw new Error(`Greška pri arhiviranju narudžbine: ${response.statusText}`);
                 }
 
-                // Ukloni narudžbinu iz stanja
                 setOrders(prevOrders => prevOrders.filter(order => order.id !== orderId));
-                console.log(`Narudžbina #${orderId} je uspešno arhivirana.`);
-
             } catch (err) {
                 console.error("Greška pri arhiviranju narudžbine:", err);
                 setError(err.message);
@@ -91,7 +92,7 @@ export default function AdminPanel() {
     if (loading) {
         return (
             <div className="min-h-screen bg-gray-50 flex flex-col pt-24 items-center justify-center">
-                <p className="text-xl text-gray-700">Učitavanje narudžbina...</p>
+                <p className="text-xl text-gray-700">Učitavanje podataka...</p>
             </div>
         );
     }
@@ -125,6 +126,23 @@ export default function AdminPanel() {
                         onUpdateOrderStatus={handleUpdateOrderStatus}
                         onArchiveOrder={handleArchiveOrder}
                     />
+
+                    <div className="mt-16">
+                        <h2 className="text-2xl font-semibold text-gray-800 mb-6">Poslane Kontakt Poruke</h2>
+                        {contacts.length === 0 ? (
+                            <p className="text-gray-600">Nema poslanih poruka.</p>
+                        ) : (
+                            <ul className="space-y-4">
+                                {contacts.map((msg) => (
+                                    <li key={msg.id} className="border p-4 rounded-lg shadow-sm">
+                                        <p><strong>Ime:</strong> {msg.ime}</p>
+                                        <p><strong>Email:</strong> {msg.email}</p>
+                                        <p><strong>Poruka:</strong> {msg.poruka}</p>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </div>
                 </div>
             </main>
             <Footer />
