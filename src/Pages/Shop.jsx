@@ -1,11 +1,10 @@
-
 import React, { useState, useEffect, useCallback } from 'react';
-import { products as allProducts } from '../data'; // Preimenovan import da se ne preklapa
-import Card from '../components/Card.jsx'; // Uvezite Card komponentu
-import Navbar from '../components/Navbar'; // Uvezite Navbar komponentu
-import Footer from '../components/Footer'; // Uvezite Footer komponentu
+import { products as allProducts } from '../data';
+import Card from '../components/Card.jsx';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 import ProductFilter from "../components/ProductsFilter.jsx";
-import Pagination from '../components/Pagination.jsx'; // Uvezite Pagination komponentu
+import Pagination from '../components/Pagination.jsx';
 
 const PRODUCTS_PER_PAGE = 12; // Definišite koliko proizvoda po stranici želite
 

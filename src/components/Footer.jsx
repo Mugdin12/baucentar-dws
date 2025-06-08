@@ -1,5 +1,4 @@
 import React from 'react';
-// ✨ Uvezite ikone iz lucide-react. Ako lucide-react nije instaliran, pokrenite: npm install lucide-react
 import { Facebook, Instagram, Linkedin, MapPin, Phone, Mail } from 'lucide-react'; // Dodane nove ikone
 
 export default function Footer() {

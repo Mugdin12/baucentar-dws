@@ -49,30 +49,6 @@
   ],
   "orders": [
     {
-      "id": "6e3c",
-      "username": "Mugdin12",
-      "totalItems": 2,
-      "totalPrice": "74.50",
-      "items": [
-        {
-          "productId": 3,
-          "name": "Komplet vrtnog crijeva",
-          "price": "15.00 KM",
-          "quantity": 1,
-          "imageUrl": "/src/slike/Item2.jpg"
-        },
-        {
-          "productId": 2,
-          "name": "Set Ručnih Alata",
-          "price": "59.50 KM",
-          "quantity": 1,
-          "imageUrl": "/src/slike/Item3.jpg"
-        }
-      ],
-      "orderDate": "2025-06-06T17:42:34.039Z",
-      "status": "Approved"
-    },
-    {
       "id": "ae4a",
       "username": "Mugdin12",
       "totalItems": 2,

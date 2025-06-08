@@ -1,8 +1,6 @@
-// Navbar.jsx
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from "../slike/logo.jpg";
-// ✨ Dodana ikona za Admin panel (Settings)
 import { ShoppingCart, User, LogOut, Settings } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { useCart } from '../contexts/CartContext.jsx'; // Dohvaćen useCart hook

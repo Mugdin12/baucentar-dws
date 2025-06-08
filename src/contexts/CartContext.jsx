@@ -66,7 +66,7 @@ export const CartProvider = ({ children }) => {
         console.log("Količina proizvoda ažurirana:", productId, newQuantity);
     };
 
-    // ✨ Nova funkcija za pražnjenje korpe
+    //  Nova funkcija za pražnjenje korpe
     const clearCart = () => {
         setCartItems([]);
         console.log("Korpa je ispražnjena.");
@@ -77,7 +77,7 @@ export const CartProvider = ({ children }) => {
         addToCart,
         removeFromCart,
         updateCartItemQuantity,
-        clearCart, // ✨ Dodana clearCart funkcija u value objekat
+        clearCart, //  Dodana clearCart funkcija u value objekat
         totalItemsInCart: cartItems.reduce((total, item) => total + item.quantity, 0),
         totalCartPrice: cartItems.reduce((total, item) => total + (item.priceValue * item.quantity), 0).toFixed(2),
     };

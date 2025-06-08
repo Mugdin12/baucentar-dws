@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './Pages/Home';
 import About from './Pages/About';
 import Shop from './Pages/Shop';
-import ProductDetail from './Pages/ProductDetail.jsx'; // Uvezite ProductDetail komponentu
+import ProductDetail from './Pages/ProductDetail.jsx';
 import ContactForm from "./Pages/ContactForm";
 import SigninForm from "./Pages/SigninForm";
 import SignupForm from "./Pages/SignupForm";

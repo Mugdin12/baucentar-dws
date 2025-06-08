@@ -1,9 +1,9 @@
 import React from 'react';
-import { products } from '../data.jsx'; // Uvezite podatke o proizvodima iz data.jsx
-import Card from './Card'; // Uvezite Card komponentu
+import { products } from '../data.jsx';
+import Card from './Card';
 
 export default function FeaturedProducts() {
-    // ✨ Ograničite prikaz na prvih 6 proizvoda
+    //  Ograničava prikaz na prvih 6 proizvoda
     const displayedProducts = products.slice(0, 6);
 
     return (
@@ -11,7 +11,7 @@ export default function FeaturedProducts() {
             <div className="max-w-6xl mx-auto">
                 <h2 className="text-4xl font-bold text-center text-gray-800 mb-10">Istaknuti Proizvodi</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {/* ✨ Mapirajte samo prikazane proizvode */}
+                    {/*  Mapiranje samo prikazane proizvode */}
                     {displayedProducts.map((product) => (
                         <Card key={product.id} product={product} /> // Renderujte Card komponentu za svaki proizvod
                     ))}

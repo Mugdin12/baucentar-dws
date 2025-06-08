@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function OrdersDisplay({ orders, onUpdateOrderStatus }) { // ✨ Dodan onUpdateOrderStatus prop
+export default function OrdersDisplay({ orders, onUpdateOrderStatus, onArchiveOrder }) { // ✨ Dodan onArchiveOrder prop
     if (orders.length === 0) {
         return (
             <p className="text-center text-gray-600 text-xl">Nema pristiglih narudžbina.</p>
@@ -16,7 +16,7 @@ export default function OrdersDisplay({ orders, onUpdateOrderStatus }) { // ✨ 
                         <span className={`px-3 py-1 rounded-full text-sm font-semibold
                                 ${order.status === 'Pending' ? 'bg-yellow-200 text-yellow-800' :
                             order.status === 'Approved' ? 'bg-green-200 text-green-800' :
-                                'bg-red-200 text-red-800'}`}> {/* ✨ Ažurirane klase za status */}
+                                'bg-red-200 text-red-800'}`}>
                             {order.status}
                         </span>
                     </div>
@@ -26,7 +26,7 @@ export default function OrdersDisplay({ orders, onUpdateOrderStatus }) { // ✨ 
                     <p className="text-gray-700 mb-4"><strong>Datum:</strong> {new Date(order.orderDate).toLocaleString('hr-HR')}</p>
 
                     <h4 className="text-lg font-medium text-gray-800 mb-2">Stavke:</h4>
-                    <ul className="list-disc list-inside text-gray-600 space-y-1 mb-4"> {/* ✨ Dodan mb-4 */}
+                    <ul className="list-disc list-inside text-gray-600 space-y-1 mb-4">
                         {order.items.map((item) => (
                             <li key={item.productId}>
                                 {item.name} x {item.quantity} ({item.price})
@@ -35,7 +35,7 @@ export default function OrdersDisplay({ orders, onUpdateOrderStatus }) { // ✨ 
                     </ul>
 
                     {/* Dugmad za promenu statusa */}
-                    <div className="flex justify-end space-x-2">
+                    <div className="flex justify-end space-x-2 mt-auto"> {/* ✨ mt-auto za guranje na dno */}
                         {order.status === 'Pending' && (
                             <>
                                 <button
@@ -52,6 +52,13 @@ export default function OrdersDisplay({ orders, onUpdateOrderStatus }) { // ✨ 
                                 </button>
                             </>
                         )}
+                        {/*  Dugme za arhiviranje/brisanje */}
+                        <button
+                            onClick={() => onArchiveOrder(order.id)}
+                            className="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors text-sm"
+                        >
+                            Arhiviraj
+                        </button>
                     </div>
                 </div>
             ))}

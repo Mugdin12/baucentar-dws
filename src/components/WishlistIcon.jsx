@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Heart } from 'lucide-react'; // Uvezena ikona Heart
+import { Heart } from 'lucide-react';
 
 export default function WishlistIcon({ productId, productName, iconSize = 24, positionClasses = "" }) {
     // Stanje za praćenje da li je proizvod dodan u listu želja

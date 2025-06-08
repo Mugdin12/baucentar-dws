@@ -1,5 +1,4 @@
-// src/contexts/AuthContext.jsx
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 // Kreiranje konteksta za autentifikaciju
 const AuthContext = createContext(null);

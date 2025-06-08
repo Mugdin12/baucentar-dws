@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; //  Uvezen useNavigate
-import Navbar from "../components/Navbar"; // Putanja do Navbar komponente
-import Footer from "../components/Footer"; // Putanja do Footer komponente
+import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 
 export default function Signup() {

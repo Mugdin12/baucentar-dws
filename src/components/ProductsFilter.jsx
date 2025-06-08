@@ -1,4 +1,3 @@
-// src/components/ProductFilter.jsx
 import React, { useState, useEffect, useRef } from 'react'; // Dodan useRef
 import { Search } from 'lucide-react'; // Uvezite ikonu za pretragu
 
@@ -22,11 +21,11 @@ export default function ProductFilter({ onFilterChange }) {
             let finalMinPrice = minPrice === '' ? null : Number(minPrice);
             let finalMaxPrice = maxPrice === '' ? null : Number(maxPrice);
 
-            // ✨ Validacija: Onemogući negativne brojeve
+            // Validacija: Onemogući negativne brojeve
             if (finalMinPrice !== null && finalMinPrice < 0) finalMinPrice = 0;
             if (finalMaxPrice !== null && finalMaxPrice < 0) finalMaxPrice = 0;
 
-            // ✨ Validacija: Maksimalna cijena ne može biti manja od minimalne
+            //  Validacija: Maksimalna cijena ne može biti manja od minimalne
             if (finalMinPrice !== null && finalMaxPrice !== null && finalMaxPrice < finalMinPrice) {
                 finalMaxPrice = finalMinPrice; // Postavi max na min ako je manji
             }
@@ -41,7 +40,7 @@ export default function ProductFilter({ onFilterChange }) {
         return () => {
             clearTimeout(handler);
         };
-    }, [searchTerm, minPrice, maxPrice]); // onFilterChange je uklonjen iz zavisnosti jer koristimo ref
+    }, [searchTerm, minPrice, maxPrice]);
 
     // Handler za minPrice input
     const handleMinPriceChange = (e) => {

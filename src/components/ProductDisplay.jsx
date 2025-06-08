@@ -1,20 +1,18 @@
-// src/components/ProductDisplay.jsx
 import React, { useState } from 'react'; // Dodan useState za lokalno upravljanje modalom
 import { useNavigate } from 'react-router-dom';
 import WishlistIcon from './WishlistIcon';
 import { useAuth } from '../contexts/AuthContext';
 import { useCart } from '../contexts/CartContext';
-// ✨ Uvezite GIF datoteku i modal komponentu
 import successGif from '../slike/7efs.gif';
 import AddToCartSuccessModal from './AddToCartSuccessModal';
 
 
-export default function ProductDisplay({ product }) { // ✨ Uklonjen onProductAddedToCart prop
+export default function ProductDisplay({ product }) {
     const navigate = useNavigate();
     const { currentUser } = useAuth();
     const { addToCart } = useCart();
 
-    // ✨ Stanje za kontrolu vidljivosti modalnog prozora i poruke
+    //  Stanje za kontrolu vidljivosti modalnog prozora i poruke
     const [showSuccessModal, setShowSuccessModal] = useState(false);
     const [modalMessage, setModalMessage] = useState('');
 
@@ -39,7 +37,7 @@ export default function ProductDisplay({ product }) { // ✨ Uklonjen onProductA
         }
     };
 
-    // ✨ Funkcija za ručno zatvaranje modalnog prozora
+    // Funkcija za ručno zatvaranje modalnog prozora
     const handleCloseModal = () => {
         setShowSuccessModal(false);
         setModalMessage('');
@@ -85,7 +83,7 @@ export default function ProductDisplay({ product }) { // ✨ Uklonjen onProductA
                 </button>
             </div>
 
-            {/* ✨ Modalni prozor za uspeh dodavanja u korpu (sada renderovan ovde) */}
+            {/* Modalni prozor za uspeh dodavanja u korpu (sada renderovan ovde) */}
             {showSuccessModal && (
                 <AddToCartSuccessModal
                     showModal={showSuccessModal}

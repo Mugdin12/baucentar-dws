@@ -6,7 +6,7 @@ Dobrodošli u repozitorijum e-commerce platforme "Baucenter". Ovaj projekat pred
 
 ## Kratki opis teme
 
-Ovaj projekat je razvoj osnovne e-commerce platforme korišćenjem React-a za frontend i `json-servera` za simulaciju backend-a. Aplikacija omogućava prikaz i pretragu proizvoda, funkcionalnosti korpe za kupovinu, upravljanje korisnicima (registracija/prijava) i poseduje admin panel za upravljanje narudžbinama i dodavanje novih proizvoda. Dizajn je moderan, čist i responsivan, sa fokusom na zelene tonove i intuitivno korisničko iskustvo.
+Ovaj projekat je razvoj osnovne e-commerce platforme korišćenjem React-a za frontend i `json-servera` za simulaciju backend-a. Aplikacija omogućava prikaz i pretragu proizvoda, funkcionalnosti korpe za kupovinu, upravljanje korisnicima (registracija/prijava) i poseduje admin panel za upravljanje narudžbinama i prikaz kontakt formi. Dizajn je moderan, čist i responsivan, sa fokusom na zelene tonove i intuitivno korisničko iskustvo.
 
 ---
 
@@ -122,7 +122,7 @@ Dizajn aplikacije je moderan, čist i funkcionalan, sa fokusom na korisničko is
     * **Fluidne slike:** Slike se skaliraju automatski kako bi se uklopile u raspoloživi prostor.
     * **Prilagodljiva korpa:** Posebna pažnja posvećena je rasporedu stavki u korpi na malim ekranima, gde se elementi slazu vertikalno kako bi se sprečilo preklapanje.
 * **Paleta Boja:**
-    * **Primarna (Akcentna): Zelena:** Koristi se za glavne akcione elemente (dugmad "Dodaj u Korpu", "Plati", navigacione linkove pri prelasku mišem, primarne tastere u admin panelu). Nijanse uključuju `bg-green-600`, `hover:bg-green-700`, `text-green-600`, `bg-[#00a63e]`. Ova boja simbolizuje prirodu, svežinu i rast, što je prikladno za "Baucenter" koncept.
+    * **Primarna (Akcentna): Zelena:** Koristi se za glavne akcione elemente (dugmad "Dodaj u Korpu", navigacione linkove pri prelasku mišem, primarne tastere u admin panelu). Nijanse uključuju `bg-green-600`, `hover:bg-green-700`, `text-green-600`, `bg-[#00a63e]`. Ova boja simbolizuje prirodu, svežinu i rast, što je prikladno za "Baucenter" koncept.
     * **Sekundarna: Plava:** Koristi se za dugme "Plati" (`bg-blue-600`) i ikone društvenih mreža. Plava boja sugeriše pouzdanost, stabilnost i poverenje.
     * **Neutralne: Sive Nijanse:** Širok spektar sivih tonova (`bg-gray-50`, `bg-gray-100`, `bg-gray-200`, `text-gray-600`, `text-gray-700`, `text-gray-800`, `border-gray-200`) čini osnovu dizajna, pružajući čist i neometan izgled pozadine, kartica i teksta.
     * **Upozorenja/Statusi:**
@@ -175,7 +175,7 @@ Pratite ove korake da biste pokrenuli projekat lokalno:
 
 1.  **Klonirajte repozitorijum:**
     ```bash
-    git clone [URL_VAŠEG_REPOZITORIJUMA]
+    git clone https://github.com/Mugdin12/baucentar-dws.git
     cd [NAZIV_VAŠEG_FOLDERA]
     ```
 

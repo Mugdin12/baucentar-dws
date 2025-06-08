@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { products } from '../data'; // Uvezite podatke o svim proizvodima
-import Card from './Card.jsx'; // Uvezite Card komponentu za prikaz povezanih proizvoda
-import { ChevronLeft, ChevronRight } from 'lucide-react'; // Uvezite ikone za navigaciju
+import { products } from '../data';
+import Card from './Card.jsx';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 
 export default function RelatedProductsCarousel({ currentProductId }) {
-    // Filtrirajte trenutni proizvod iz liste da se ne ponavlja
+    // Filtriranje trenutni proizvod iz liste da se ne ponavlja
     const relatedProducts = products.filter(p => p.id !== parseInt(currentProductId));
 
-    // ✨ Uklonjeno ograničenje na prvih 6 proizvoda, sada se prikazuju svi povezani proizvodi
+    //  Uklonjeno ograničenje na prvih 6 proizvoda, sada se prikazuju svi povezani proizvodi
     const displayProducts = relatedProducts;
 
     const [currentSlide, setCurrentSlide] = useState(0);
 
-    // Prilagodite broj proizvoda po prikazu za različite veličine ekrana
+    // Prilagođavanje broja proizvoda po prikazu za različite veličine ekrana
     const getProductsPerView = () => {
         if (window.innerWidth >= 1024) return 4; // lg
         if (window.innerWidth >= 768) return 3; // md
@@ -22,7 +22,7 @@ export default function RelatedProductsCarousel({ currentProductId }) {
     };
     const [productsPerView, setProductsPerView] = useState(getProductsPerView());
 
-    // Ažurirajte productsPerView kada se veličina prozora promijeni
+    // Ažuriranje productsPerView kada se veličina prozora promijeni
     useEffect(() => {
         const handleResize = () => {
             setProductsPerView(getProductsPerView());
@@ -71,7 +71,6 @@ export default function RelatedProductsCarousel({ currentProductId }) {
                             {displayProducts.map((product) => (
                                 <div
                                     key={product.id}
-                                    // Uklonjen px-2, širina se sada dinamički postavlja na osnovu productsPerView
                                     className={`flex-shrink-0`}
                                     style={{ width: `${100 / productsPerView}%` }} // Dinamička širina kartice
                                 >

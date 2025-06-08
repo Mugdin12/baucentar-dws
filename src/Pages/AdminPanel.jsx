@@ -36,7 +36,7 @@ export default function AdminPanel() {
         fetchOrders();
     }, [currentUser, navigate]);
 
-    // ✨ Nova funkcija za ažuriranje statusa narudžbine
+    // Funkcija za ažuriranje statusa narudžbine
     const handleUpdateOrderStatus = async (orderId, newStatus) => {
         try {
             const response = await fetch(`http://localhost:3001/orders/${orderId}`, {
@@ -65,6 +65,28 @@ export default function AdminPanel() {
         }
     };
 
+    // Funkcija za arhiviranje (brisanje) narudžbine
+    const handleArchiveOrder = async (orderId) => {
+        if (window.confirm(`Da li ste sigurni da želite arhivirati (obrisati) narudžbinu #${orderId}? Ova akcija je nepovratna.`)) {
+            try {
+                const response = await fetch(`http://localhost:3001/orders/${orderId}`, {
+                    method: 'DELETE',
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Greška pri arhiviranju narudžbine: ${response.statusText}`);
+                }
+
+                // Ukloni narudžbinu iz stanja
+                setOrders(prevOrders => prevOrders.filter(order => order.id !== orderId));
+                console.log(`Narudžbina #${orderId} je uspešno arhivirana.`);
+
+            } catch (err) {
+                console.error("Greška pri arhiviranju narudžbine:", err);
+                setError(err.message);
+            }
+        }
+    };
 
     if (loading) {
         return (
@@ -98,7 +120,11 @@ export default function AdminPanel() {
                 <div className="max-w-6xl mx-auto bg-white rounded-lg shadow-lg p-8">
                     <h1 className="text-4xl font-bold text-center text-gray-800 mb-10">Admin Panel - Narudžbine</h1>
 
-                    <OrdersDisplay orders={orders} onUpdateOrderStatus={handleUpdateOrderStatus} /> {/* ✨ Prosleđena funkcija */}
+                    <OrdersDisplay
+                        orders={orders}
+                        onUpdateOrderStatus={handleUpdateOrderStatus}
+                        onArchiveOrder={handleArchiveOrder}
+                    />
                 </div>
             </main>
             <Footer />
